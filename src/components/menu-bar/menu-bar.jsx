@@ -11,19 +11,13 @@ import VM from 'scratch-vm';
 
 import Box from '../box/box.jsx';
 import Button from '../button/button.jsx';
-import CommunityButton from './community-button.jsx';
-import ShareButton from './share-button.jsx';
 import WeChatButton from './wechat-button.jsx';
 import {ComingSoonTooltip} from '../coming-soon/coming-soon.jsx';
 import Divider from '../divider/divider.jsx';
-import SaveStatus from './save-status.jsx';
-import ProjectWatcher from '../../containers/project-watcher.jsx';
 import MenuBarMenu from './menu-bar-menu.jsx';
 import {MenuItem, MenuSection} from '../menu/menu.jsx';
 import ProjectTitleInput from './project-title-input.jsx';
 import AuthorInfo from './author-info.jsx';
-import AccountNav from '../../containers/account-nav.jsx';
-import LoginDropdown from './login-dropdown.jsx';
 import SB3Downloader from '../../containers/sb3-downloader.jsx';
 import DeletionRestorer from '../../containers/deletion-restorer.jsx';
 import TurboMode from '../../containers/turbo-mode.jsx';
@@ -78,8 +72,6 @@ import collectMetadata from '../../lib/collect-metadata';
 import styles from './menu-bar.css';
 
 import helpIcon from '../../lib/assets/icon--tutorials.svg';
-import mystuffIcon from './icon--mystuff.png';
-import profileIcon from './icon--profile.png';
 import remixIcon from './icon--remix.svg';
 import dropdownCaret from './dropdown-caret.svg';
 import aboutIcon from './icon--about.svg';
@@ -270,6 +262,9 @@ class MenuBar extends React.Component {
             this.props.onSetTimeTravelMode(mode);
         };
     }
+    handleBilibiliClick () {
+        window.open('https://space.bilibili.com/103304976', '_blank');
+    }
     handleRestoreOption (restoreFun) {
         return () => {
             restoreFun();
@@ -401,7 +396,7 @@ class MenuBar extends React.Component {
                 id="gui.menuBar.new"
             />
         );
-        const remixButton = (
+        const remixButton = ( // eslint-disable-line no-unused-vars
             <Button
                 className={classNames(
                     styles.menuBarButton,
@@ -643,13 +638,10 @@ class MenuBar extends React.Component {
                     <div className={styles.menuBarItem}>
                         <div
                             className={classNames(styles.menuBarItem, styles.hoverable, 'bilibili-button')}
-                            onClick={() => {
-                                window.open('https://space.bilibili.com/103304976', '_blank');
-                            }
-                            }
+                            onClick={this.handleBilibiliClick}
                         >
                             <FormattedMessage
-                                defaultMessage="B站教程"
+                                defaultMessage="B站视频教程"
                                 description="Link for tutorials on Bilibili"
                                 id="gui.menuBar.bilibiliTutorials"
                             />
